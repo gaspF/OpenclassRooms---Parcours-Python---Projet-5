@@ -1,26 +1,29 @@
 import mysql.connector
-from motdepasse import *
+from constants import *
 
 
-file = "DBOFF.sql"
-password = passwordGF
+offfile = file
+usergf = main_user
+hostgf = main_host
+passwrdgf = passwordGF
+databasegf = main_database
 
 def database_logging():
     mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        passwd=password,
-        database="DBOFF"
+        host=hostgf,
+        user=usergf,
+        password=passwrdgf,
+        database=databasegf,
         )
 
 def creating_database():
     mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        passwd=password
+        host=hostgf,
+        user=usergf,
+        password=passwrdgf
         )
     cursor = mydb.cursor()
-    sql = open(file).read()
+    sql = open(offfile).read()
     cursor.execute(sql)
 
 if __name__ == "__main__":

@@ -2,7 +2,10 @@ import mysql.connector
 from constants import *
 from motdepasse import *
 
-password = passwordGF
+usergf = main_user
+hostgf = main_host
+passwrdgf = passwordGF
+databasegf = main_database
 
 class Products():
 
@@ -29,7 +32,7 @@ class Products():
 
 
         try:
-            mydb = mysql.connector.connect(host="localhost",user="root",passwd=password,database="DBOFF")
+            mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
             cursor = mydb.cursor()
             cursor.execute(add_data, add_product)
             mydb.commit(),
@@ -40,7 +43,7 @@ class Products():
             pass
 
     def get_product(self, product_id):
-        mydb = mysql.connector.connect(host="localhost",user="root",passwd=password,database="DBOFF")
+        mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
         cursor = mydb.cursor() 
         cursor.execute(query_create_select_product, (product_id,))
 
@@ -60,7 +63,7 @@ class Products():
         
 
     def substitute(self):
-        mydb = mysql.connector.connect(host="localhost",user="root",passwd=password,database="DBOFF")
+        mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
         cursor = mydb.cursor()
         cursor.execute("""SELECT * FROM product
 WHERE nutrition_grade < %s AND category_name = %s""", (self.nutrition_grade, self.category_name))
@@ -75,7 +78,7 @@ WHERE nutrition_grade < %s AND category_name = %s""", (self.nutrition_grade, sel
         return self.substitute_id, self.substitute_name, self.substitute_grade
 
     def save(self):
-        mydb = mysql.connector.connect(host="localhost",user="root",passwd=password,database="DBOFF")
+        mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
         cursor = mydb.cursor()
         add_element = (self.id, self.product_name, self.nutrition_grade, self.substitute_id, self.substitute_name, self.substitute_grade)
         cursor.execute(query_save, add_element)
@@ -95,7 +98,7 @@ class Category():
         add_category = (self.category_name)
 
         try:
-            mydb = mysql.connector.connect(host="localhost",user="root",passwd=password,database="DBOFF")
+            mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
             cursor = mydb.cursor()
             cursor.execute(add_cat_data, (add_category,))
             mydb.commit()

@@ -1,6 +1,15 @@
-
-
+from motdepasse import *
 import mysql.connector 
+
+# login parameters
+main_user = "root"
+main_database = "DBOFF"
+main_password = passwordGF
+main_host = "localhost"
+file = "DBOFF.sql"
+
+
+# MYSQL Querys
 
 add_data = ("INSERT INTO PRODUCT"
             "(product_name, nutrition_grade, product_url, product_store, category_name)"

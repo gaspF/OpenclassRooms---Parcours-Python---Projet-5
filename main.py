@@ -4,10 +4,13 @@ from constants import *
 from api_requests import *
 from create_database import *
 import mysql.connector
-from motdepasse import *
 import sys
 
-password = passwordGF
+
+usergf = main_user
+hostgf = main_host
+passwrdgf = passwordGF
+databasegf = main_database
 
 def logging():
     loop = 1
@@ -31,7 +34,7 @@ def logging():
 
 
 def filling_database():
-    mydb = mysql.connector.connect(host="localhost",user="root",passwd=password,database="DBOFF")
+    mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
     cursor = mydb.cursor()
     loop = 1
     while loop:
@@ -53,7 +56,7 @@ def filling_database():
             start_menu()
 
 def start_menu():
-    mydb = mysql.connector.connect(host="localhost",user="root",passwd=password,database="DBOFF")
+    mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
     cursor = mydb.cursor()
     loop = 1
     while loop:
@@ -91,7 +94,7 @@ def start_menu():
 
             
 def display_categories():
-    mydb = mysql.connector.connect(host="localhost",user="root",passwd=password,database="DBOFF")
+    mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
     cursor = mydb.cursor()
     cursor.execute(query_display_category)
 
@@ -99,7 +102,7 @@ def display_categories():
         print(id, ".....", name)
 
 def display_saved():
-    mydb = mysql.connector.connect(host="localhost",user="root",passwd=password,database="DBOFF")
+    mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
     cursor = mydb.cursor()
     cursor.execute(query_display_saved)
 
@@ -107,7 +110,7 @@ def display_saved():
         print(saved_product_id, "--", saved_product_name, "--", saved_product_grade, "--", saved_substitute_id, "--", saved_substitute_name, "--", saved_substitute_grade)
 
 def select_category(cat_id):
-    mydb = mysql.connector.connect(host="localhost",user="root",passwd=password,database="DBOFF")
+    mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
     cursor = mydb.cursor()
     cursor.execute(query_select_category, cat_id)
     for id, name in cursor:
