@@ -38,15 +38,11 @@ def filling_database():
     cursor = mydb.cursor()
     loop = 1
     while loop:
-        choice = int(input("Mettre à jour les catégories et produits ? 1 == Oui // 2 == Non \n"))
+        choice = int(input("Mettre à jour les catégories et produits ? 1 = Oui // 2 = Non \n"))
 
         if choice == 1:
             fill_category()
-            get_data("volailles")
-            get_data("snacks")
-            get_data("Boissons")
-            get_data("Conserves")
-            get_data("fruits secs")
+            get_data()
             mydb.commit()
             cursor.close()
             mydb.close()
@@ -60,7 +56,7 @@ def start_menu():
     cursor = mydb.cursor()
     loop = 1
     while loop:
-        choice = int(input("1 - Remplacer un aliment. \n"
+        choice = int(input("1 - Substituer un aliment. \n"
                            "2 - Accéder aux aliments substitués. \n"
                            "3 - Quitter le programme. \n"))
         if choice == 3:
@@ -83,11 +79,11 @@ def start_menu():
             print("Ce produit a été substitué par : \n")
             p_selected.substitute()
             
-            choice = input("Voulez-vous sauvegarder ce produit ? o / n \n")
-            if choice == "o":
+            choice = input("Voulez-vous sauvegarder ce produit ? 1 = Oui // 2 = Non \n")
+            if choice == "1":
                 p_selected.save()
-            if choice == "n":
-                print("Sauvegarde non effectuée")
+            if choice == "2":
+                print("Sauvegarde non effectuée.")
                 
         if choice == 2:
             display_saved()

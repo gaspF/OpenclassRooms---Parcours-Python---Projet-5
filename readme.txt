@@ -4,27 +4,43 @@ Gaspard Fouché
 
 Concept
 
-Pur Beurre propose un programme permettant de récupérer les aliments via l'API d'OpenFoodFacts et de les comparer avec ceux entrés par l'utilisateur
-et d'en proposer un substitut plus sain
+Le programme permet de récupérer les aliments via l'API d'OpenFoodFacts et de les comparer avec ceux choisis par l'utilisateur, et d'en proposer un substitut plus sain.
 
 
 Description
 
-Sur le terminal, trois choix :
+Sur le terminal, au premier écran, trois choix :
 
-1- Quel aliment souhaitez-vous remplacer ?
-2- Retrouver les aliments substitués.
+1- Nouvel utilisateur : Créer la base de données.
+2- Utilisateur existant : Poursuivre.
+3- Quitter le programme.
 
-Si l'utilisateur sélectionne 1. Le programme pose les questions suivantes à l'utilisateur et ce dernier sélectionne les réponses :
+Si l'utilisateur sélectionne 1, le programme crée la base de données et amène l'utilisateur à l'écran deux.
 
-Sélectionnez la catégorie. [Plusieurs propositions associées à un chiffre. L'utilisateur entre le chiffre correspondant et appuie sur entrée]
+Si l'utilisateur sélectionne 2, le programme se connecte à la base de données et amène l'utilisateur à l'écran deux.
 
-Sélectionnez l'aliment. [Plusieurs propositions associées à un chiffre. L'utilisateur entre le chiffre correspondant à l'aliment choisi et appuie sur entrée]
+Si l'utilisateur sélectionne 3, le programme se ferme.
 
-Le programme propose un substitut, sa description, un magasin ou l'acheter (le cas échéant) et un lien vers la page d'Open Food Facts concernant cet aliment.
 
-L'utilisateur a alors la possibilité d'enregistrer le résultat dans la base de données.
+Sur le deuxième écran, un nouveau choix :
 
-Si l'utilisateur sélectionne 2, le terminal affiche l'historique des recherches effectuées par l'utilisateur afin de pouvoir y accéder de nouveau sans passer par l'API.
+1- Mettre à jour les catégories et produits ? 1 == Oui / 2 == Non
 
-Fonctionnalités
+Si l'utilisateur sélectionne 1, le programme télécharge les catégories alimentaires de la base de données et les produits associés, puis l'amène à l'écran trois.
+
+Si l'utilisateur sélectionn 2, le programme passe la mise à jour et amène l'utilisateur à l'écran trois.
+
+
+Le troisième écran présente le coeur des fonctionnalités du programme :
+
+1- Substituer un aliment.
+2- Accéder aux aliments substitués.
+3- Quitter le programme.
+
+Si l'utilisateur sélectionne 1, le programme propose une liste de catégories. L'utilisateur devra choisir la catégorie en écrivant son ID. Le programme
+affichera une liste d'aliments appartenant à la catégorie choisie. L'utilisateur choisira l'aliment à substituer en entrant son ID.
+
+Si l'utilisateur sélectionne 2, Le programme affichera la liste des aliments substitués et leur produit de substitution associé.
+
+Si l'utilisateur sélectionn 3, le programme se ferme.
+
