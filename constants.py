@@ -1,7 +1,7 @@
 from motdepasse import *
 import mysql.connector 
 
-# login parameters
+""" login parameters """
 MAIN_USER = "root"
 MAIN_DATABASE = "DBOFF"
 MAIN_PASSWORD = passwordGF
@@ -9,7 +9,7 @@ MAIN_HOST = "localhost"
 FILE = "DBOFF.sql"
 
 
-# MYSQL Querys
+""" MYSQL Querys """
 
 ADD_DATA = ("INSERT INTO PRODUCT"
             "(product_name, nutrition_grade, product_url, product_store, category_name)"

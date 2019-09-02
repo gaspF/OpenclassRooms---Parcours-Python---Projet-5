@@ -14,11 +14,13 @@ databasegf = MAIN_DATABASE
 
 
 def global_new_user():
+    """Global user is a Database class instance"""
     global new_user
     new_user = Database()
 
 
 def logging():
+    """First user screen"""
     loop = 1
     while loop:
         choice = int(input("1 - Nouvel utilisateur : Créer la base de données.\n"
@@ -28,19 +30,20 @@ def logging():
             Database.create_database()
             global_new_user()
             print("Base de données créée.")
-            filling_database()
+            second_screen()
 
         if choice == 2:
             Database.loging()
             print("Connecté à la base de données.")
-            filling_database()
+            second_screen()
 
         if choice == 3:
             loop = 0
             sys.exit(0)
 
 
-def filling_database():
+def second_screen():
+    """second user screen"""
     mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
     cursor = mydb.cursor()
     loop = 1
@@ -53,12 +56,13 @@ def filling_database():
             mydb.commit()
             cursor.close()
             mydb.close()
-            start_menu()
+            main_screen()
 
         if choice == 2 :
-            start_menu()
+            main_screen()
 
-def start_menu():
+def main_screen():
+    """main screen"""
     mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
     cursor = mydb.cursor()
     global_new_user()

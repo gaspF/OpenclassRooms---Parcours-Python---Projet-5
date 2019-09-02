@@ -45,9 +45,10 @@ class Products():
             pass
 
     def get_product(self, product_id):
-        """Method that catchs a product selected by user, in order to get it's nutrition grade, or even display or save it later into substitute table."""
+        """Method that catchs a product selected by user, in order to get it's nutrition grade, or even display
+         or save it later into substitute table."""
         mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
-        cursor = mydb.cursor() 
+        cursor = mydb.cursor()
         cursor.execute(QUERY_CREATE_SELECT_PRODUCT, (product_id,))
 
         for id, product_name, category_name, nutrition_grade, product_url, category_id in cursor:
@@ -64,7 +65,6 @@ class Products():
         print(" Aliment {} de la catégorie {} \n\n"
               "Son nutriscore est de {} \n\n"
               .format(self.product_name, self.category_name, self.nutrition_grade))
-        
 
     def substitute(self):
         """Method that queries the database to find a better nutrition's grade product than the selected one"""
@@ -90,7 +90,6 @@ WHERE nutrition_grade < %s AND category_name = %s""", (self.nutrition_grade, sel
         cursor.execute(QUERY_SAVE, add_element)
         mydb.commit()
 
-        
 
 class Category():
     """A class that allows program to add categories to database"""
@@ -102,12 +101,12 @@ class Category():
     def add(self, category_name):
         self.category_name = category_name
 
-        add_category = (self.category_name)
+        add_category = self.category_name
 
         try:
             mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
             cursor = mydb.cursor()
-            cursor.execute(add_cat_data, (add_category,))
+            cursor.execute(ADD_CAT_DATA, (add_category,))
             mydb.commit()
             cursor.close()
             mydb.close()
