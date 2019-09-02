@@ -55,8 +55,12 @@ class Database:
     def display_saved(self):
         """Method used for displaying substitute table"""
         self.cursor.execute(QUERY_DISPLAY_SAVED)
-        for saved_product_id, saved_product_name, saved_product_grade, saved_substitute_id, saved_substitute_name, saved_substitute_grade in self.cursor:
-            print(saved_product_id, "--", saved_product_name, "--", saved_product_grade, "--", saved_substitute_id, "--", saved_substitute_name, "--", saved_substitute_grade)
+        for saved_product_id, saved_product_name, saved_product_grade, saved_substitute_id, saved_substitute_name, \
+            saved_substitute_grade in self.cursor:
+            print("Produit à substituer :", "\n", "ID :", saved_product_id, "...", "Nom du produit :",
+                  saved_product_name, "...", "Grade nutritionnel :", saved_product_grade, "\n",
+                  "Produit de substitution :", "\n", "ID :", saved_substitute_id, "...", "Nom du produit :",
+                  saved_substitute_name, "...", "Grade nutritionnel :", saved_substitute_grade, "\n")
 
     def select_category(self, cat_id):
         """Method used displaying all products from a selected category"""

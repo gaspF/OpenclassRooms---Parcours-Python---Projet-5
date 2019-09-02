@@ -30,7 +30,12 @@ class Products():
         self.product_store = product_store
         self.category_name = category_name
 
-        add_product = (self.product_name, self.nutrition_grade, self.product_url, self.product_store, self.category_name)
+        add_product = (self.product_name,
+                       self.nutrition_grade,
+                       self.product_url,
+                       self.product_store,
+                       self.category_name
+                       )
 
 
         try:
@@ -70,8 +75,8 @@ class Products():
         """Method that queries the database to find a better nutrition's grade product than the selected one"""
         mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
         cursor = mydb.cursor()
-        cursor.execute("""SELECT * FROM product
-WHERE nutrition_grade < %s AND category_name = %s""", (self.nutrition_grade, self.category_name))
+        cursor.execute("""SELECT * FROM product WHERE nutrition_grade < %s AND category_name = %s""",
+                       (self.nutrition_grade, self.category_name))
         row = cursor.fetchone()
         
         for element in row:
@@ -86,7 +91,13 @@ WHERE nutrition_grade < %s AND category_name = %s""", (self.nutrition_grade, sel
         """Method that saves the catched product and the substitute product into the substitute table"""
         mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
         cursor = mydb.cursor()
-        add_element = (self.id, self.product_name, self.nutrition_grade, self.substitute_id, self.substitute_name, self.substitute_grade)
+        add_element = (self.id,
+                       self.product_name,
+                       self.nutrition_grade,
+                       self.substitute_id,
+                       self.substitute_name,
+                       self.substitute_grade
+                       )
         cursor.execute(QUERY_SAVE, add_element)
         mydb.commit()
 
@@ -104,7 +115,11 @@ class Category():
         add_category = self.category_name
 
         try:
-            mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
+            mydb = mysql.connector.connect(host=hostgf,
+                                           user=usergf,
+                                           password=passwrdgf,
+                                           database=databasegf
+                                           )
             cursor = mydb.cursor()
             cursor.execute(ADD_CAT_DATA, (add_category,))
             mydb.commit()
