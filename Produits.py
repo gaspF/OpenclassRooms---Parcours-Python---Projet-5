@@ -2,12 +2,13 @@ import mysql.connector
 from constants import *
 from motdepasse import *
 
-usergf = main_user
-hostgf = main_host
-passwrdgf = passwordGF
-databasegf = main_database
+usergf = MAIN_USER
+hostgf = MAIN_HOST
+passwrdgf = MAIN_PASSWORD
+databasegf = MAIN_DATABASE
 
 class Products():
+    """A class that allows program to add products to database, or as well display or substitute them"""
 
     def __init__(self):
         self.product_name = ""
@@ -22,6 +23,7 @@ class Products():
         self.category_id = 0
 
     def add(self, product_name, nutrition_grade, product_url, product_store, category_name):
+        """Add product to database"""
         self.product_name = product_name
         self.nutrition_grade = nutrition_grade
         self.product_url = product_url
@@ -43,9 +45,10 @@ class Products():
             pass
 
     def get_product(self, product_id):
+        """Method that catchs a product selected by user, in order to get it's nutrition grade, or even display or save it later into substitute table."""
         mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
         cursor = mydb.cursor() 
-        cursor.execute(query_create_select_product, (product_id,))
+        cursor.execute(QUERY_CREATE_SELECT_PRODUCT, (product_id,))
 
         for id, product_name, category_name, nutrition_grade, product_url, category_id in cursor:
             self.id = id
@@ -57,12 +60,14 @@ class Products():
         return self.nutrition_grade
         
     def display(self):
+        """Method used for displaying the catched product"""
         print(" Aliment {} de la catégorie {} \n\n"
               "Son nutriscore est de {} \n\n"
               .format(self.product_name, self.category_name, self.nutrition_grade))
         
 
     def substitute(self):
+        """Method that queries the database to find a better nutrition's grade product than the selected one"""
         mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
         cursor = mydb.cursor()
         cursor.execute("""SELECT * FROM product
@@ -78,15 +83,17 @@ WHERE nutrition_grade < %s AND category_name = %s""", (self.nutrition_grade, sel
         return self.substitute_id, self.substitute_name, self.substitute_grade
 
     def save(self):
+        """Method that saves the catched product and the substitute product into the substitute table"""
         mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
         cursor = mydb.cursor()
         add_element = (self.id, self.product_name, self.nutrition_grade, self.substitute_id, self.substitute_name, self.substitute_grade)
-        cursor.execute(query_save, add_element)
+        cursor.execute(QUERY_SAVE, add_element)
         mydb.commit()
 
         
 
 class Category():
+    """A class that allows program to add categories to database"""
 
     def __init__(self):
         self.category_name = ""
