@@ -41,7 +41,7 @@ class Products():
         try:
             mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
             cursor = mydb.cursor()
-            cursor.execute(add_data, add_product)
+            cursor.execute(ADD_DATA, add_product)
             mydb.commit(),
             cursor.close()
             mydb.close()
