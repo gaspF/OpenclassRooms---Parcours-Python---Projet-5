@@ -31,11 +31,10 @@ class Database:
     @staticmethod
     def create_database():
         """Staticmethod for creating database"""
-        mydb = mysql.connector.connect(
-            host=Database.db_host,
-            user=Database.db_user,
-            password=Database.db_password,
-            )
+        mydb = mysql.connector.connect(host=Database.db_host,
+                                       user=Database.db_user,
+                                       password=Database.db_password,
+                                       )
         cursor = mydb.cursor()
         sql = open(offfile).read()
         cursor.execute(sql)

@@ -2,6 +2,7 @@ from motdepasse import *
 import mysql.connector 
 
 """ login parameters """
+
 MAIN_USER = "root"
 MAIN_DATABASE = "DBOFF"
 MAIN_PASSWORD = passwordGF
