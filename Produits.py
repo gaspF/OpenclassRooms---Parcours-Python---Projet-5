@@ -21,6 +21,9 @@ class Products():
         self.substitute_name = ""
         self.substitute_grade = ""
         self.category_id = 0
+        MySQLConfig = {'user':usergf,'password':passwordGF,'host':hostgf,'database':databasegf}
+        self.mydb = mysql.connector.connect(**MySQLConfig)
+        self.cursor = self.mydb.cursor(buffered=True)
 
     def add(self, product_name, nutrition_grade, product_url, product_store, category_name):
         """Add product to database"""
@@ -39,12 +42,10 @@ class Products():
 
 
         try:
-            mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
-            cursor = mydb.cursor()
-            cursor.execute(ADD_DATA, add_product)
-            mydb.commit(),
-            cursor.close()
-            mydb.close()
+            self.cursor.execute(ADD_DATA, add_product)
+            self.mydb.commit(),
+            self.cursor.close()
+            self.mydb.close()
 
         except mysql.connector.errors.IntegrityError:
             pass
@@ -52,11 +53,9 @@ class Products():
     def get_product(self, product_id):
         """Method that catchs a product selected by user, in order to get it's nutrition grade, or even display
          or save it later into substitute table."""
-        mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
-        cursor = mydb.cursor()
-        cursor.execute(QUERY_CREATE_SELECT_PRODUCT, (product_id,))
+        self.cursor.execute(QUERY_CREATE_SELECT_PRODUCT, (product_id,))
 
-        for id, product_name, category_name, nutrition_grade, product_url, category_id in cursor:
+        for id, product_name, category_name, nutrition_grade, product_url, category_id in self.cursor:
             self.id = id
             self.product_name = product_name
             self.nutrition_grade = nutrition_grade
@@ -73,11 +72,9 @@ class Products():
 
     def substitute(self):
         """Method that queries the database to find a better nutrition's grade product than the selected one"""
-        mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
-        cursor = mydb.cursor()
-        cursor.execute("""SELECT * FROM product WHERE nutrition_grade < %s AND category_name = %s""",
+        self.cursor.execute("""SELECT * FROM product WHERE nutrition_grade < %s AND category_name = %s""",
                        (self.nutrition_grade, self.category_name))
-        row = cursor.fetchone()
+        row = self.cursor.fetchone()
         
         for element in row:
             print(element, end = ' -- ')
@@ -89,8 +86,6 @@ class Products():
 
     def save(self):
         """Method that saves the catched product and the substitute product into the substitute table"""
-        mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
-        cursor = mydb.cursor()
         add_element = (self.id,
                        self.product_name,
                        self.nutrition_grade,
@@ -98,8 +93,8 @@ class Products():
                        self.substitute_name,
                        self.substitute_grade
                        )
-        cursor.execute(QUERY_SAVE, add_element)
-        mydb.commit()
+        self.cursor.execute(QUERY_SAVE, add_element)
+        self.mydb.commit()
 
 
 class Category():
