@@ -1,5 +1,5 @@
 import requests
-from Produits import *
+from Products import *
 from constants import *
 from api_requests import *
 from database import *
