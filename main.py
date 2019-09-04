@@ -1,5 +1,5 @@
 import requests
-from Products import *
+from Product import *
 from constants import *
 from api_requests import *
 from database import *
@@ -18,7 +18,6 @@ def global_new_user():
     global new_user
     new_user = Database()
 
-
 def logging():
     """First user screen"""
     loop = 1
@@ -28,7 +27,6 @@ def logging():
                            "3 - Quitter le programme. \n"))
         if choice == 1 :
             Database.create_database()
-            global_new_user()
             print("Base de données créée.")
             second_screen()
 
@@ -41,21 +39,14 @@ def logging():
             loop = 0
             sys.exit(0)
 
-
 def second_screen():
     """second user screen"""
-    mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
-    cursor = mydb.cursor()
     loop = 1
-    global_new_user()
     while loop:
         choice = int(input("Mettre à jour les catégories et produits ? 1 = Oui // 2 = Non \n"))
 
         if choice == 1:
             get_data()
-            mydb.commit()
-            cursor.close()
-            mydb.close()
             main_screen()
 
         if choice == 2 :
@@ -63,10 +54,7 @@ def second_screen():
 
 def main_screen():
     """main screen"""
-    mydb = mysql.connector.connect(host=hostgf,user=usergf,password=passwrdgf,database=databasegf)
-    cursor = mydb.cursor()
     global_new_user()
-    
     loop = 1
     while loop:
         choice = int(input("1 - Substituer un aliment. \n"

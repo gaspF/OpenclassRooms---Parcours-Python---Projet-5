@@ -1,5 +1,5 @@
 import requests
-from Produits import *
+from Product import *
 import mysql.connector
 
 def get_data():
@@ -23,7 +23,6 @@ def get_data():
             pr = requests.get(product_url)
             products = pr.json()
             
-
             product_name = ""
             product_url = ""
             nutrition_grade = ""
@@ -40,9 +39,11 @@ def get_data():
                     product_store = p["stores"]
                     category_name = category_name_url
 
+
                 except KeyError:
                     pass
+                
 
                 product.add(product_name, nutrition_grade, product_url, product_store, category_name)
-        
+            product.cursor_closed()
     
