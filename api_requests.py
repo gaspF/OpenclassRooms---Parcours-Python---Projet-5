@@ -2,6 +2,7 @@ import requests
 from Product import *
 import mysql.connector
 
+
 def get_data():
     """Get data (categories and products from OpenFoodFacts"""
     main_url = "https://fr.openfoodfacts.org/categories.json"
@@ -10,7 +11,7 @@ def get_data():
     category_name = ""
     categorie = Category()
     nbr = 15
-    
+
     print("Téléchargement de ", nbr, "catégories")
 
     for c in range(nbr):
@@ -19,10 +20,10 @@ def get_data():
         print("Téléchargement des produits de la catégorie", category_name_url)
 
         for page in range(4):
-            product_url = categories["tags"][c]["url"] + "/" + str(page+1) + ".json"
+            product_url = categories["tags"][c]["url"] + "/" + str(page + 1) + ".json"
             pr = requests.get(product_url)
             products = pr.json()
-            
+
             product_name = ""
             product_url = ""
             nutrition_grade = ""
@@ -39,11 +40,14 @@ def get_data():
                     product_store = p["stores"]
                     category_name = category_name_url
 
-
                 except KeyError:
                     pass
-                
 
-                product.add(product_name, nutrition_grade, product_url, product_store, category_name)
+                product.add(
+                    product_name,
+                    nutrition_grade,
+                    product_url,
+                    product_store,
+                    category_name,
+                )
             product.cursor_closed()
-    
