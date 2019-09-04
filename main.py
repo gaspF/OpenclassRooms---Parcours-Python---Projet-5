@@ -12,11 +12,7 @@ hostgf = MAIN_HOST
 passwrdgf = MAIN_PASSWORD
 databasegf = MAIN_DATABASE
 
-
-def global_new_user():
-    """Global user is a Database class instance"""
-    global new_user
-    new_user = Database()
+    
 
 def logging():
     """First user screen"""
@@ -54,7 +50,8 @@ def second_screen():
 
 def main_screen():
     """main screen"""
-    global_new_user()
+    new_user = Database()
+    p_selected = Products()
     loop = 1
     while loop:
         choice = int(input("1 - Substituer un aliment. \n"
@@ -72,7 +69,6 @@ def main_screen():
 
             product_id = (int(input("Choissez un produit à substituer: \n")))
 
-            p_selected = Products()
             p_selected.get_product(product_id)
             print("vous avez seléctionné: \n")
             
@@ -87,8 +83,7 @@ def main_screen():
                 print("Sauvegarde non effectuée.")
                 
         if choice == 2:
-            Database.display_saved(new_user)
-
+            Database.display_saved(p_selected)
 
 if __name__ == "__main__":
     logging()

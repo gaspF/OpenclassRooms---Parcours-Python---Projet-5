@@ -67,5 +67,9 @@ class Database:
         for id, name in self.cursor:
             print(id, ".....", name)
 
+    def db_cursor_closed(self):
+        self.cursor.close()
+        self.mydb.close()
+
 
 

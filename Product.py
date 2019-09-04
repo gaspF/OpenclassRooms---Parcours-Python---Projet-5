@@ -99,7 +99,6 @@ class Products():
         self.cursor.execute(QUERY_SAVE, add_element)
         self.mydb.commit()
 
-
 class Category():
     """A class that allows program to add categories to database"""
 
