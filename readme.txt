@@ -7,6 +7,11 @@ Concept
 Le programme permet de récupérer les aliments via l'API d'OpenFoodFacts et de les comparer avec ceux choisis par l'utilisateur, et d'en proposer un substitut plus sain.
 
 
+Installation
+
+Remplacez les informations d'identifiants MYSQL dans le fichier Constants.py par les vôtres. Le programme se lance à partir de main.py
+
+
 Description
 
 Sur le terminal, au premier écran, trois choix :
