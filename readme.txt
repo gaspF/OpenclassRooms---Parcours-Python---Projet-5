@@ -1,51 +1,51 @@
-PROJET 5 OpenClassrooms - Utilisez les données publiques d'OpenFoodFacts
-Gaspard Fouché
+PROJET 5 OpenClassrooms - Utilisez les donnï¿½es publiques d'OpenFoodFacts
+Gaspard Fouchï¿½
 
 
 Concept
 
-Le programme permet de récupérer les aliments via l'API d'OpenFoodFacts et de les comparer avec ceux choisis par l'utilisateur, et d'en proposer un substitut plus sain.
+Le programme permet de rï¿½cupï¿½rer les aliments via l'API d'OpenFoodFacts et de les comparer avec ceux choisis par l'utilisateur, et d'en proposer un substitut plus sain.
 
 
 Installation
 
-Remplacez les informations d'identifiants MYSQL dans le fichier Constants.py par les vôtres. Le programme se lance à partir de main.py
+Remplacez les Ã©lÃ©ments d'identifiant MYSQL dans le fichier Constants.py par les vï¿½tres. Le programme se lance ï¿½ partir de main.py
 
 
 Description
 
-Sur le terminal, au premier écran, trois choix :
+Sur le terminal, au premier ï¿½cran, trois choix :
 
-1- Nouvel utilisateur : Créer la base de données.
+1- Nouvel utilisateur : Crï¿½er la base de donnï¿½es.
 2- Utilisateur existant : Poursuivre.
 3- Quitter le programme.
 
-Si l'utilisateur sélectionne 1, le programme crée la base de données et amène l'utilisateur à l'écran deux.
+Si l'utilisateur sï¿½lectionne 1, le programme crï¿½e la base de donnï¿½es et amï¿½ne l'utilisateur ï¿½ l'ï¿½cran deux.
 
-Si l'utilisateur sélectionne 2, le programme se connecte à la base de données et amène l'utilisateur à l'écran deux.
+Si l'utilisateur sï¿½lectionne 2, le programme se connecte ï¿½ la base de donnï¿½es et amï¿½ne l'utilisateur ï¿½ l'ï¿½cran deux.
 
-Si l'utilisateur sélectionne 3, le programme se ferme.
-
-
-Sur le deuxième écran, un nouveau choix :
-
-1- Mettre à jour les catégories et produits ? 1 == Oui / 2 == Non
-
-Si l'utilisateur sélectionne 1, le programme télécharge les catégories alimentaires de la base de données et les produits associés, puis l'amène à l'écran trois.
-
-Si l'utilisateur sélectionn 2, le programme passe la mise à jour et amène l'utilisateur à l'écran trois.
+Si l'utilisateur sï¿½lectionne 3, le programme se ferme.
 
 
-Le troisième écran présente le coeur des fonctionnalités du programme :
+Sur le deuxiï¿½me ï¿½cran, un nouveau choix :
+
+1- Mettre ï¿½ jour les catï¿½gories et produits ? 1 == Oui / 2 == Non
+
+Si l'utilisateur sï¿½lectionne 1, le programme tï¿½lï¿½charge les catï¿½gories alimentaires de la base de donnï¿½es et les produits associï¿½s, puis l'amï¿½ne ï¿½ l'ï¿½cran trois.
+
+Si l'utilisateur sï¿½lectionn 2, le programme passe la mise ï¿½ jour et amï¿½ne l'utilisateur ï¿½ l'ï¿½cran trois.
+
+
+Le troisiï¿½me ï¿½cran prï¿½sente le coeur des fonctionnalitï¿½s du programme :
 
 1- Substituer un aliment.
-2- Accéder aux aliments substitués.
+2- Accï¿½der aux aliments substituï¿½s.
 3- Quitter le programme.
 
-Si l'utilisateur sélectionne 1, le programme propose une liste de catégories. L'utilisateur devra choisir la catégorie en écrivant son ID. Le programme
-affichera une liste d'aliments appartenant à la catégorie choisie. L'utilisateur choisira l'aliment à substituer en entrant son ID.
+Si l'utilisateur sï¿½lectionne 1, le programme propose une liste de catï¿½gories. L'utilisateur devra choisir la catï¿½gorie en ï¿½crivant son ID. Le programme
+affichera une liste d'aliments appartenant ï¿½ la catï¿½gorie choisie. L'utilisateur choisira l'aliment ï¿½ substituer en entrant son ID.
 
-Si l'utilisateur sélectionne 2, Le programme affichera la liste des aliments substitués et leur produit de substitution associé.
+Si l'utilisateur sï¿½lectionne 2, Le programme affichera la liste des aliments substituï¿½s et leur produit de substitution associï¿½.
 
-Si l'utilisateur sélectionn 3, le programme se ferme.
+Si l'utilisateur sï¿½lectionn 3, le programme se ferme.
 
