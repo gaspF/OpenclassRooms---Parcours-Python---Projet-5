@@ -50,4 +50,5 @@ def get_data():
                     product_store,
                     category_name,
                 )
+
             product.cursor_closed()
