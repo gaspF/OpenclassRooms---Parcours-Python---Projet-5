@@ -21,7 +21,6 @@ class Products:
         self.substitute_id = 0
         self.substitute_name = ""
         self.substitute_grade = ""
-        self.category_id = 0
         MySQLConfig = {
             "user": usergf,
             "password": passwordGF,
@@ -51,6 +50,7 @@ class Products:
 
         try:
             self.cursor.execute(ADD_DATA, add_product)
+            self.cursor.execute(QUERY_UPDATE)
             self.mydb.commit()
 
         except mysql.connector.errors.IntegrityError:
@@ -77,7 +77,6 @@ class Products:
             self.product_name = product_name
             self.nutrition_grade = nutrition_grade
             self.category_name = category_name
-            self.category_id = category_id
 
         return self.nutrition_grade
 
@@ -97,12 +96,33 @@ class Products:
             (self.nutrition_grade, self.category_name),
         )
         row = self.cursor.fetchone()
+        self.substitute_id = row[0]
+        self.substitute_name = row[1]
+        self.substitute_grade = row[4]
+        self.substitute_url = row[5]
+        self.substitute_store = row[6]
 
-        for element in row:
-            print(element, end=" -- ")
-            self.substitute_id = row[0]
-            self.substitute_name = row[1]
-            self.substitute_grade = row[4]
+        print(
+            "ID :",
+            self.substitute_id,
+            "...",
+            "\n",
+            "Nom du produit :",
+            self.substitute_name,
+            "...",
+            "\n",
+            "Grade nutritionnel :",
+            self.substitute_grade,
+            "...",
+            "\n",
+            "URL :",
+            self.substitute_url,
+            "...",
+            "\n",
+            "Boutique :",
+            self.substitute_store,
+            "\n",
+        )
 
         return self.substitute_id, self.substitute_name, self.substitute_grade
 

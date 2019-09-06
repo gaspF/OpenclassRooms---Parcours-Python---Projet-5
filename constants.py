@@ -18,6 +18,14 @@ ADD_DATA = (
     "VALUES (%s, %s, %s, %s, %s)"
 )
 
+QUERY_UPDATE = (
+    " UPDATE Product"
+    " INNER JOIN Category ON Category.category_name = Product.category_name"
+    " SET Product.category_id = Category.id"
+    " WHERE Product.category_name = category.category_name"
+)
+
+
 ADD_CAT_DATA = "INSERT INTO CATEGORY" "(category_name)" "VALUES (%s)"
 
 QUERY_DISPLAY_CATEGORY = "SELECT id, category_name from Category"
