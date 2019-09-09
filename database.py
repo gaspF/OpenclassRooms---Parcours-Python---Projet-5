@@ -12,8 +12,8 @@ databasegf = MAIN_DATABASE
 
 
 class Database:
-    """A class that allow user to connect to the database or creating a new one from the database file, with
-    two staticmethor, or query database in order to display required data."""
+    """A class that allow user to connect to the database or create a new one from the database file, with
+    two staticmethods, or query database in order to display required data."""
 
     db_user = usergf
     db_password = passwrdgf
@@ -33,7 +33,7 @@ class Database:
 
     @staticmethod
     def create_database():
-        """Staticmethod for creating database"""
+        """Staticmethod for create database"""
         mydb = mysql.connector.connect(
             host=Database.db_host, user=Database.db_user, password=Database.db_password
         )
@@ -95,7 +95,7 @@ class Database:
             )
 
     def select_category(self, cat_id):
-        """Method used displaying all products from a selected category"""
+        """Method used for displaying all products from a selected category"""
         self.cursor.execute(QUERY_SELECT_CATEGORY, cat_id)
         for id, name in self.cursor:
             print(id, ".....", name)

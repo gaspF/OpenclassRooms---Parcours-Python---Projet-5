@@ -40,7 +40,7 @@ def logging():
 
 
 def second_screen():
-    """second user screen"""
+    """Second user screen"""
     loop = 1
     while loop:
         choice = int(
@@ -56,7 +56,7 @@ def second_screen():
 
 
 def main_screen():
-    """main screen"""
+    """Main user screen"""
     new_user = Database()
     p_selected = Products()
     loop = 1

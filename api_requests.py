@@ -4,7 +4,7 @@ import mysql.connector
 
 
 def get_data():
-    """Get data (categories and products from OpenFoodFacts"""
+    """Get data (categories and products from OpenFoodFacts)"""
     main_url = "https://fr.openfoodfacts.org/categories.json"
     r = requests.get(main_url)
     categories = r.json()
