@@ -4,7 +4,7 @@ import mysql.connector
 
 
 def get_data():
-    """Get data (categories and products from OpenFoodFacts)"""
+    """Get data (categories and products from OpenFoodFacts"""
     main_url = "https://fr.openfoodfacts.org/categories.json"
     r = requests.get(main_url)
     categories = r.json()
@@ -33,22 +33,21 @@ def get_data():
             product = Products()
 
             for p in products["products"]:
-                try:
-                    product_name = p["product_name_fr"]
+                if not all(tag in p for tag in ("product_name", "nutrition_grades", "url", "stores")):
+                    pass
+
+                else:
+                    product_name = p["product_name"]
                     nutrition_grade = p["nutrition_grades"]
                     product_url = p["url"]
                     product_store = p["stores"]
                     category_name = category_name_url
 
-                except KeyError:
-                    pass
-
-                product.add(
-                    product_name,
-                    nutrition_grade,
-                    product_url,
-                    product_store,
-                    category_name,
-                )
+                    product.add(product_name,
+                                nutrition_grade,
+                                product_url,
+                                product_store,
+                                category_name,
+                                )
 
             product.cursor_closed()
